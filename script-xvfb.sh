@@ -13,7 +13,7 @@ x11vnc -display $DISPLAY -bg -forever -nopw  -xkb &
 sleep 3
 websockify --web /usr/share/novnc 8080 localhost:5900 &
 sleep 5
-lt --port 8080 
-# lt --port 8080 | awk '{print $4."/vnc.html"}'     
+# lt --port 8080 
+lt --port 8080 | awk '{print $4."/vnc.html"}'     
 sleep 3
 echo "done"
