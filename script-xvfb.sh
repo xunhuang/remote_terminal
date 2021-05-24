@@ -6,7 +6,7 @@ sudo npm install -g localtunnel
 export DISPLAY=:1
 Xvfb $DISPLAY -screen 0 1024x768x16 &
 fluxbox &
-npm install -g localtunnel
+sudo npm install -g localtunnel
 xterm &
 x11vnc -display $DISPLAY -bg -forever -nopw  -xkb & 
 sleep 3
