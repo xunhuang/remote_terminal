@@ -26,6 +26,9 @@ sleep 5
 # echo "Done with this... hopefully we see a port"
 ngrok http http://localhost:8080   &
 sleep 5
+baseurl=`curl -s http://localhost:4040/api/tunnels| jq -r '.tunnels[0].public_url'`
+novnc_url="$baseurl/vnc.html"
+echo $novnc_url
 
 # should vist whateversite_from_ngrok/vnc.html
 
