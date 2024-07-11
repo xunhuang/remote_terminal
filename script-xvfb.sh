@@ -23,8 +23,9 @@ websockify --web /usr/share/novnc 8080 localhost:5900 &
 sleep 5
 # lt --port 8080  &
 # lt --port 8080 | awk '{print $4."/vnc.html"}'      &
-sleep 5
 # echo "Done with this... hopefully we see a port"
-ngrok http http://localhost:8080  
+ngrok http http://localhost:8080   &
+sleep 5
+
 # should vist whateversite_from_ngrok/vnc.html
 
