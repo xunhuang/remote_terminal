@@ -1,0 +1,27 @@
+name: web-linux
+on:
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fastai/workflows/ssh@master
+        with:
+          ssh_key: ${{ secrets.SSH_KEY }}
+          key_file: id_ecdsa
+      - uses: actions/checkout@v2
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@master
+        with:
+          detached: true
+          connect-timeout-seconds: 21600
+      - name: print tmate session
+        run: |
+          tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
+      - name: print tmate session
+        run: |
+          url=`tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}' |jq "@uri" -jRr `; echo $url
