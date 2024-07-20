@@ -21,4 +21,3 @@ jobs:
         uses: mxschmitt/action-tmate@master
         env:
           response_id: ${{ inputs.response_id }}
-          ${{secrets}}
