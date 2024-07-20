@@ -1,0 +1,24 @@
+name: XvFB on linux on Web
+on:
+  workflow_dispatch:
+    inputs:
+      response_id:
+        required: false
+        default: ""
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # j- run: source script-xvfb.sh
+      # jenv: ${{secrets}}
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@master
+        env:
+          response_id: ${{ inputs.response_id }}
+          ${{secrets}}
