@@ -1,4 +1,4 @@
-name: mac
+name: mac on web
 on:
   workflow_dispatch:
 defaults:
@@ -12,13 +12,16 @@ jobs:
       - uses: actions/checkout@v2
       - run: source script-mac.sh
       - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+        uses: mxschmitt/action-tmate@v2
         with:
           detached: true
           connect-timeout-seconds: 21600
       - name: print tmate session
         run: |
           /tmp/tmate/tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
+      - name: print tmate session web
+        run: |
+          /tmp/tmate/tmate -S /tmp/tmate.sock display -p '#{tmate_web}'
       - name: print tmate session
         run: |
-          url=`/tmp/tmate/tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}' |jq "@uri" -jRr `; echo $url
+          url=`/tmp/tmate/tmate -S /tmp/tmate.sock display -p '#{tmate_web}' |jq "@uri" -jRr `; echo $url

@@ -17,7 +17,7 @@ jobs:
           connect-timeout-seconds: 21600
       - name: print tmate session
         run: |
-          /tmp/tmate/tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
+          /tmp/tmate/tmate -S /tmp/tmate.sock display -p '#{tmate_web}'
       - name: print tmate session
         run: |
-          url=`/tmp/tmate/tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}' |jq "@uri" -jRr `; echo $url
+          url=`/tmp/tmate/tmate -S /tmp/tmate.sock display -p '#{tmate_web}' |jq "@uri" -jRr `; echo $url
