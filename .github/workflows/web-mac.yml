@@ -16,4 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: source script-mac-web.sh
+        env:
+          response_id: ${{ inputs.response_id }}
       - run: sleep 1000000
