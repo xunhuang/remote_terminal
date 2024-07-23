@@ -1,6 +1,10 @@
 name: web-linux
 on:
   workflow_dispatch:
+    inputs:
+      response_id:
+        required: false
+        default: ""
 defaults:
   run:
     shell: bash
@@ -10,14 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@master
-        with:
-          detached: true
-          connect-timeout-seconds: 21600
-      - name: print tmate session
-        run: |
-          /tmp/tmate/tmate -S /tmp/tmate.sock display -p '#{tmate_web}'
-      - name: print tmate session
-        run: |
-          url=`/tmp/tmate/tmate -S /tmp/tmate.sock display -p '#{tmate_web}' |jq "@uri" -jRr `; echo $url
+      - name: create web version of tmate
+        run: source script-linux-web.sh
+        env:
+          response_id: ${{ inputs.response_id }}
+      - run: sleep 1000000
