@@ -1,6 +1,11 @@
 name: mac on web
 on:
   workflow_dispatch:
+    inputs:
+      response_id:
+        required: false
+        default: ""
+
 defaults:
   run:
     shell: bash
