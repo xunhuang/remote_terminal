@@ -19,8 +19,9 @@ jobs:
         env:
           response_id: ${{ inputs.response_id }}
           NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@master
-        env:
-          response_id: ${{ inputs.response_id }}
-          NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@master
+      #   env:
+      #     response_id: ${{ inputs.response_id }}
+      #     NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+      - run: sleep 1000000
