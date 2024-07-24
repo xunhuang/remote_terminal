@@ -22,7 +22,7 @@ export PATH="/System/Volumes/Data/opt/X11/bin:$PATH"
 export DISPLAY=:1
 Xvfb $DISPLAY -screen 0 1600x1200x16 &
 
-# sleep 3
+sleep 3
 # sudo npm install -g localtunnel
 xterm &
 twm &
