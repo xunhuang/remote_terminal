@@ -28,7 +28,7 @@ xterm &
 twm &
 x11vnc -display $DISPLAY -bg -forever -nopw  -xkb & 
 
-git clone https://github.com/novnc/noVNC/
+# git clone https://github.com/novnc/noVNC/
 cd noVNC
  ./utils/novnc_proxy --vnc localhost:5900 & 
 
