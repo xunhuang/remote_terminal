@@ -1,4 +1,4 @@
-name: XvFB on linux on Web
+name: XvFB on mac on Web
 on:
   workflow_dispatch:
     inputs:
@@ -15,13 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: source script-xvfb.sh
+      - run: source script-xvfb-mac.sh
         env:
           response_id: ${{ inputs.response_id }}
           NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
-      # - name: Setup tmate session
-      #   uses: mxschmitt/action-tmate@master
-      #   env:
-      #     response_id: ${{ inputs.response_id }}
-      #     NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
-      - run: sleep 1000000
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@master
+        env:
+          response_id: ${{ inputs.response_id }}
+          NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
