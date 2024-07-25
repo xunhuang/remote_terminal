@@ -29,7 +29,11 @@ function FetchDataComponent({ terminal }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${baseurl}/launch?workflow=${terminal.workflow}`)
+    fetch(
+      `${baseurl}/launch?workflow=${
+        terminal.workflow
+      }&callback_url=${encodeURIComponent(baseurl)}`
+    )
       .then((response) => response.json())
       .then((data) => {
         const response_id = data.response_id;
