@@ -2,22 +2,41 @@ import React, { useState, useEffect } from "react";
 
 import "./App.css";
 
+const terminals = [
+  {
+    name: "Linux Terminal",
+    workflow: "web-linux.yml",
+  },
+  {
+    name: "Mac Terminal",
+    workflow: "web-mac.yml",
+  },
+  {
+    name: "Linux X Desktop",
+    workflow: "web-xvfb.yml",
+  },
+  {
+    name: "Mac X Desktop (work in progress)",
+    workflow: "web-xvfb-mac.yml",
+  },
+];
+
 const baseurl = "https://remote-terminal-appserver-3khoexoznq-uw.a.run.app";
-function FetchDataComponent() {
+function FetchDataComponent({ terminal }) {
   const [response_id, setResponse_id] = useState(null);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${baseurl}/launch?workflow=web-linux.yml`)
+    fetch(`${baseurl}/launch?workflow=${terminal.workflow}`)
       .then((response) => response.json())
       .then((data) => {
         const response_id = data.response_id;
         console.log(response_id);
         setResponse_id(response_id);
       });
-  }, []);
+  }, [terminal.workflow]);
 
   useEffect(() => {
     if (!response_id) {
@@ -48,26 +67,29 @@ function FetchDataComponent() {
   }, [response_id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Loading... {terminal.name}</div>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return (
+      <div>
+        {terminal.name} Error: {error.message}
+      </div>
+    );
   }
 
   return (
     <div>
-      <ul>
-        {data.data !== null && (
-          <div>
-            <a className="App-link" href={data.data}>
-              {data.data}
-            </a>
-            <div>Type "q" to if you see a black screen</div>
-          </div>
-        )}
-        {/* {data.data !== null && window.location.replace(data.data)} */}
-      </ul>
+      <div>{terminal.name}</div>
+      {data.data !== null && (
+        <div>
+          <a className="App-link" href={data.data}>
+            {data.data}
+          </a>
+          <div>Type "q" to if you see a black screen</div>
+        </div>
+      )}
+      {/* {data.data !== null && window.location.replace(data.data)} */}
     </div>
   );
 }
@@ -87,15 +109,25 @@ const TimeSinceLoaded = () => {
 };
 
 function App() {
+  const [selectedTerminal, setSelectedTerminal] = useState(null);
   return (
     <div className="App">
       <header className="App-header">
-        <div>Desktop launching (takes about 1 minute)</div>
-        <TimeSinceLoaded />
-
-        <div>
-          <FetchDataComponent />
-        </div>
+        {!selectedTerminal &&
+          terminals.map((terminal) => (
+            <div key={terminal.name}>
+              <button onClick={() => setSelectedTerminal(terminal)}>
+                {terminal.name}
+              </button>
+            </div>
+          ))}
+        {selectedTerminal && (
+          <div>
+            <div>{selectedTerminal.name} launching (takes about 1 minute)</div>
+            <TimeSinceLoaded />
+            <FetchDataComponent terminal={selectedTerminal} />
+          </div>
+        )}
       </header>
     </div>
   );
