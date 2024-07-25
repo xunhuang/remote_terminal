@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/remote_terminal/static/css/main.f855e6bc.css",
-    "main.js": "/remote_terminal/static/js/main.3b1bf63a.js",
+    "main.js": "/remote_terminal/static/js/main.5c9569d8.js",
     "static/js/453.ed3810f9.chunk.js": "/remote_terminal/static/js/453.ed3810f9.chunk.js",
     "index.html": "/remote_terminal/index.html",
     "main.f855e6bc.css.map": "/remote_terminal/static/css/main.f855e6bc.css.map",
-    "main.3b1bf63a.js.map": "/remote_terminal/static/js/main.3b1bf63a.js.map",
+    "main.5c9569d8.js.map": "/remote_terminal/static/js/main.5c9569d8.js.map",
     "453.ed3810f9.chunk.js.map": "/remote_terminal/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.3b1bf63a.js"
+    "static/js/main.5c9569d8.js"
   ]
 }
