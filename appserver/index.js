@@ -32,6 +32,7 @@ app.get("/set", async (req, res) => {
 
 app.get("/launch", async (req, res) => {
   const key = req.query.workflow;
+  const callback_url = req.query.callback_url;
   const uuid = crypto.randomUUID();
 
   const url = `https://api.github.com/repos/xunhuang/remote_terminal/actions/workflows/${key}/dispatches`;
@@ -39,6 +40,7 @@ app.get("/launch", async (req, res) => {
     ref: "master",
     inputs: {
       response_id: uuid,
+      callback_url: callback_url,
     },
   };
 
