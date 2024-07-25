@@ -5,6 +5,9 @@ on:
       response_id:
         required: false
         default: ""
+      callback_url:
+        required: false
+        default: ""
 
 defaults:
   run:
@@ -19,8 +22,10 @@ jobs:
         env:
           response_id: ${{ inputs.response_id }}
           NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+          callback_url: ${{ inputs.callback_url }}
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@master
         env:
           response_id: ${{ inputs.response_id }}
           NGROK_TOKEN: ${{ secrets.NGROK_TOKEN }}
+          callback_url: ${{ inputs.callback_url }}

@@ -5,6 +5,9 @@ on:
       response_id:
         required: false
         default: ""
+      callback_url:
+        required: false
+        default: ""
 
 defaults:
   run:
@@ -18,4 +21,5 @@ jobs:
       - run: source script-mac-web.sh
         env:
           response_id: ${{ inputs.response_id }}
+          callback_url: ${{ inputs.callback_url }}
       - run: sleep 1000000
