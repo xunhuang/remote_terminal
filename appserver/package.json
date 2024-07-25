@@ -1,0 +1,22 @@
+{
+  "name": "remote-terminal-appserver",
+  "description": "app server for remote terminal",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "gcloud run deploy remote-terminal-appserver --source . --region us-west1 --allow-unauthenticated --set-env-vars GITHUB_TOKEN=$GITHUB_TOKEN"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "author": "Google LLC",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.17.1"
+  }
+}
