@@ -33,6 +33,6 @@ echo $novnc_url
 # should vist whateversite_from_ngrok/vnc.html
 if [ -n "$response_id" ]; then
   url_encoded=`echo "$novnc_url" | jq -sRr @uri | sed 's/%0A$//'`
-  curl -X GET "https://helloworld-3khoexoznq-uw.a.run.app/set?key=$response_id&value=$url_encoded"
+  curl -X GET "https://remote-terminal-appserver-3khoexoznq-uw.a.run.app/set?key=$response_id&value=$url_encoded"
 fi
 
